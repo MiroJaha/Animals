@@ -1,0 +1,72 @@
+class Animal{
+    var name: String
+    var health: Int = 100
+    
+    init(name: String) {
+        self.name = name
+    }
+
+    func displayHealth() -> Animal {
+        print("\(name) has \(health)% Health")
+        return self
+    }
+}
+
+class Cat: Animal{
+    override init(name: String) {
+        super.init(name: name)
+        health = 150
+    }
+    
+    func growl() -> Cat {
+        print("Rawr!")
+        return self
+    }
+
+    func run() -> Cat {
+        print("Running")
+        health -= 10
+        return self
+    }
+}
+
+class Lion: Cat{
+    override init(name: String) {
+        super.init(name: name)
+        health = 200
+    }
+    
+    override func growl() -> Lion {
+        print("ROAR!!!! I am the King of the Jungle")
+        return self
+    }
+}
+
+class Cheetah: Cat{
+    override func run() -> Cheetah {
+        if health > 0{
+            print("Running Fast")
+            health -= 50
+        }
+        else{
+            print("No Health")
+        }
+        return self
+    }
+
+    func sleep() -> Cheetah{
+        if health < 200{
+            health += 50
+        }
+        return self
+    }
+}
+
+var cheetah = Cheetah(name: "Cheetah")
+cheetah.sleep().displayHealth()
+cheetah.sleep().displayHealth()
+cheetah.run().run().run().run().displayHealth()
+cheetah.sleep().displayHealth()
+
+var lion = Lion(name: "lion")
+lion.run().run().run().growl().displayHealth()
